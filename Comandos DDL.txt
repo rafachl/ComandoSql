@@ -1,0 +1,71 @@
+create database Atividade
+
+create table curso(
+id int not null auto_increment,
+nome varchar(200),
+cargahoraria int,
+tipo varchar(200),
+primary key(id)
+); 
+create table aluno(
+id int not null auto_increment,
+nome varchar(200),
+cpf int,
+datanascimento date,
+genero varchar(1),
+telefone int,
+email varchar(100),
+responsaveis varchar(500),
+primary key(id)
+)
+create table disciplinas(
+id int not null auto_increment,
+nome varchar(200) not null,
+cd_curso int not null,
+conteudo varchar(500),
+cargahoraria int,
+nomeprofessor varchar(200),
+semestre int,
+primary key (id),
+constraint disciplina_curso FOREIGN key (cd_curso) references curso(id)
+)
+create table aluno_disciplina(
+id int not null auto_increment,
+cd_disciplina int not null,
+cd_aluno int not null,
+primary key(id),
+constraint aluno_disciplina_aluno FOREIGN key (cd_aluno) references aluno(id),
+constraint aluno_disciplina_disciplina FOREIGN key (cd_disciplina) references disciplinas(id)
+)
+
+alter table aluno drop column cpf 
+
+
+
+alter table aluno add column rg int
+
+alter table aluno change column nome nome varchar(250)
+
+
+
+alter table aluno change column nome nome_ varchar(150)
+
+
+alter table aluno change column nome_ nome varchar(200)
+
+alter table aluno rename to estudante 
+
+insert into estudante(nome,datanascimento,genero,telefone,email,responsaveis,rg)
+values('Joao','2020-01-01','M',99999999,'seujoao@gmail.com','Joao pai',1111)
+
+create table professor(
+id int not null auto_increment,
+nome varchar(100),
+primary key (id)
+)
+
+alter table disciplinas drop column nomeprofessor 
+
+alter table disciplinas add column cd_professor int not null 
+
+alter table disciplinas add constraint disciplinas_professor FOREIGN key (cd_professor) references professor (id)
