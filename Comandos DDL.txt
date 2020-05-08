@@ -29,6 +29,7 @@ semestre int,
 primary key (id),
 constraint disciplina_curso FOREIGN key (cd_curso) references curso(id)
 )
+
 create table aluno_disciplina(
 id int not null auto_increment,
 cd_disciplina int not null,
