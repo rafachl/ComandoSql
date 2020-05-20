@@ -1,0 +1,8 @@
+
+create table atividade_2020(
+id int not null auto_increment,
+nome varchar(200),
+cargahoraria int,
+tipo varchar(200),
+primary key(id)
+); 
